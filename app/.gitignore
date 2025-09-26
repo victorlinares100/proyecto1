@@ -1,0 +1,41 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Android Studio
+.idea/
+.gradle/
+local.properties
+*.iml
+
+# Archivos generados por Android
+/build/
+*/build/
+
+# Archivos de dependencias
+*.jar
+*.apk
+*.ap_
+*.dex
+
+# Archivos temporales de Gradle
+.gradle/
+
+# Archivos de configuración locales
+*.env
+*.local
+
+# Archivos de logs
+*.log
+
+# Proyectos en Eclipse
+.classpath
+.project
+.settings/
+
+# Archivos de compilación específicos
+captures/
+output/
+
+# Archivos de los test
+*.keystore
