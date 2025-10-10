@@ -72,4 +72,48 @@ class UsuarioViewModel : ViewModel() {
             )
         }
     }
+
+    fun validarFormulario(): Boolean {
+        // 1. Obtener el estado actual del StateFlow
+        val estadoActual = _estado.value
+
+        // 2. Ejecutar las reglas de validación y construir el nuevo objeto UsuarioErrores
+        val errores = UsuarioErrores(
+            nombre = if (estadoActual.nombre.isBlank()) {
+                "Campo obligatorio"
+            } else null,
+
+            correo = if (!estadoActual.correo.contains("@")) { // Validación: debe contener '@'
+                "Correo inválido"
+            } else null,
+
+            clave = if (estadoActual.clave.length < 6) { // Validación: Mínimo 6 caracteres
+                "Debe tener al menos 6 caracteres"
+            } else null,
+
+            direccion = if (estadoActual.direccion.isBlank()) {
+                "Campo obligatorio"
+            } else null
+
+            // Aquí puedes añadir la validación de 'aceptaTerminos' si es obligatoria
+            // aceptaTerminos = if (!estadoActual.aceptaTerminos) "Debe aceptar términos" else null
+        )
+
+        // 3. Determinar si existe algún error
+        // Se usa ListOfNotNull para filtrar los 'null' y verificar si la lista resultante está vacía
+        val hayErrores = listOfNotNull(
+            errores.nombre,
+            errores.correo,
+            errores.clave,
+            errores.direccion
+        ).isNotEmpty()
+
+        // 4. Actualizar el StateFlow con los nuevos errores
+        _estado.update {
+            it.copy(errores = errores)
+        }
+
+        // 5. Retornar el resultado de la validación
+        return !hayErrores
+    }
 }
