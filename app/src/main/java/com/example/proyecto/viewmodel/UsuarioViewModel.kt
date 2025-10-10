@@ -1,13 +1,12 @@
-package com.example.proyecto.ui
+package com.example.proyecto.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.proyecto.model.UsuarioErrores
+import com.example.proyecto.model.UsuarioUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import com.example.proyecto.model.UsuarioErrores
-import com.example.proyecto.model.UsuarioUiState
-
 
 class UsuarioViewModel : ViewModel() {
 
